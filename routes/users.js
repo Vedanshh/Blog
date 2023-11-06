@@ -5,7 +5,7 @@ const middleware = require('../common/middleware')
 /* GET users listing. */
 
 router.get('/login', function(req, res, next) {
-  
+  res.send('User Login Successful');
 });
 
 router.get('/register', function(req, res, next) {

@@ -3,7 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var session = require('express-session')
+require('dotenv').config()
 const routes = require('./routes/routes');
 
 var app = express();
@@ -26,6 +27,12 @@ routes.httpRoutes().forEach((item) => {
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  saveUninitialized: true,
+  resave: true
+}));
 
 // error handler
 app.use(function(err, req, res, next) {
